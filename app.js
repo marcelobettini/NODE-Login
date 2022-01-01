@@ -6,6 +6,7 @@ const PORT = 3000;
 require("dotenv").config();
 const routeLogin = require("./routes/login");
 const routeIndex = require("./routes/index");
+const routeSecret = require("./routes/secret")
 
 const app = express();
 app.use(express.static(path.join(__dirname, "public"))); //carpeta public
@@ -19,6 +20,7 @@ hbs.registerPartials(path.join(__dirname, "./views/partials"));
 // app.get("/", (req, res) => res.render("index"));
 app.use("/", routeIndex);
 app.use("/login", routeLogin);
+app.use("/secret", routeSecret)
 
 app.listen(PORT, (err) => {
   err
