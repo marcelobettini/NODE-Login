@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, "public"))); //carpeta public
 // app.use(express.json()); //permite leer datos en formato JSON
 app.use(express.urlencoded({ extended: false })); //permite enviar datos de form
 
-app.set("view engine", "hbs", { layoutsDir: "views" });
+app.set("view engine", "hbs");
 // __dirname is an environment variable that tells you the absolute path of the directory containing the currently executing file.
 //la línea de abajo es igual a ...(__dirname + "/views/partials");
 hbs.registerPartials(path.join(__dirname, "./views/partials"));
