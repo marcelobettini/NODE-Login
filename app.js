@@ -6,13 +6,14 @@ const PORT = 3000;
 require("dotenv").config();
 const routeLogin = require("./routes/login");
 const routeIndex = require("./routes/index");
-const routeSecret = require("./routes/secret")
+const routeSecret = require("./routes/secret");
 
 const app = express();
 app.use(express.static(path.join(__dirname, "public"))); //carpeta public
 // app.use(express.json()); //permite leer datos en formato JSON
 app.use(express.urlencoded({ extended: false })); //permite enviar datos de form
-app.set("view engine", "hbs");
+
+app.set("view engine", "hbs", { layoutsDir: "views" });
 // __dirname is an environment variable that tells you the absolute path of the directory containing the currently executing file.
 //la línea de abajo es igual a ...(__dirname + "/views/partials");
 hbs.registerPartials(path.join(__dirname, "./views/partials"));
@@ -20,7 +21,7 @@ hbs.registerPartials(path.join(__dirname, "./views/partials"));
 // app.get("/", (req, res) => res.render("index"));
 app.use("/", routeIndex);
 app.use("/login", routeLogin);
-app.use("/secret", routeSecret)
+app.use("/secret", routeSecret);
 
 app.listen(PORT, (err) => {
   err
