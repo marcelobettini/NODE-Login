@@ -1,21 +1,29 @@
 "use strict";
+
 const express = require("express");
 const router = express.Router();
-const mdlUsers = require('../models/mdlUsers')
+const mdlUsers = require("../models/mdlUsers");
+
 router.get("/", (req, res) => {
   res.render("login");
 });
 
-router.post("/", async (req, res) => {
-const data = await mdlUsers.getUser(req.body.user, req.body.pass)
-if(data != undefined) {
-  console.log(data.userName)
-  req.session.user = req.body.user
-  console.log(req.session.userName)
-  
-  res.render('secret')
-} else {
-  res.redirect('/')
-}
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 });
+
+router.post("/", async (req, res) => {
+  const user = req.body.user;
+  const pass = req.body.pass;
+  const data = await mdlUsers.getUser(user, pass);
+
+  if (data != undefined) {
+    req.session.user = user;
+    res.render("secret", { user });
+  } else {
+    res.render("Login");
+  }
+});
+
 module.exports = router;
