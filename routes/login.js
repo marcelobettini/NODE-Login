@@ -22,7 +22,8 @@ router.post("/", async (req, res) => {
     req.session.user = user;
     res.render("secret", { user });
   } else {
-    res.render("Login");
+    const message = "usuario o contraseña incorrectos"
+    res.render("Login", {message:message});
   }
 });
 
