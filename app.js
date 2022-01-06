@@ -40,8 +40,14 @@ const secured = async (req, res, next) => {
     res.render("noAuth");
   }
 };
+const isAuth = (req,res,next) =>{
+  app.locals.user = req.session.user;
+  console.log(app.locals.user)
+  next()
 
-app.use("/", routeIndex);
+}
+
+app.use("/",isAuth, routeIndex);
 app.use("/login", routeLogin);
 app.use("/secret", secured, routeSecret);
 
