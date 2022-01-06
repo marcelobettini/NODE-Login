@@ -34,6 +34,7 @@ app.use(
 //continúe activa
 const secured = async (req, res, next) => {
   if (req.session.user) {
+    app.locals.user = req.session.user;
     next();
   } else {
     res.render("noAuth");

@@ -13,8 +13,24 @@
 </head>
 
 <body>
-    Esta es la que va
-    {{>navbar}}
+    <nav>
+        <ul class="nav bg-light nav-tabs justify-content-center">
+            {{#if user}}
+            <li class="nav-item">
+                <a class="nav-link" href="login/logout">Logout</a>
+            </li>
+            {{else}}
+            <li class="nav-item">
+                <a class="nav-link" href="login">Login</a>
+            </li>
+            {{/if}}
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+        </ul>
+    </nav>
+
+
     {{>header}}
     {{{body}}}
     {{>footer}}
