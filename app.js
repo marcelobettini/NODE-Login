@@ -42,9 +42,7 @@ const secured = async (req, res, next) => {
 };
 const isAuth = (req,res,next) =>{
   app.locals.user = req.session.user;
-  console.log(app.locals.user)
   next()
-
 }
 
 app.use("/",isAuth, routeIndex);
