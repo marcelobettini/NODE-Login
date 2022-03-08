@@ -34,18 +34,19 @@ app.use(
 //continúe activa
 const secured = async (req, res, next) => {
   if (req.session.user) {
-    app.locals.user = req.session.user;
     next();
   } else {
     res.render("noAuth");
   }
 };
-const isAuth = (req,res,next) =>{
+//copiamos user de req.session a var local, para poder renderizar
+//conidicionalmente el navbar
+const isAuth = (req, res, next) => {
   app.locals.user = req.session.user;
-  next()
-}
+  next();
+};
 
-app.use("/",isAuth, routeIndex);
+app.use("/", isAuth, routeIndex);
 app.use("/login", routeLogin);
 app.use("/secret", secured, routeSecret);
 

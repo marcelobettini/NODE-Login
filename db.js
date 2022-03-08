@@ -25,7 +25,7 @@ pool.getConnection((err, connection) => {
   if (err) {
     if (err.code === "ENOENT") {
       console.error(
-        "Now U'll see ENOENT error. You're trying to fetch data fron a Database that´s not connected"
+        "You're trying to fetch data fron a Database that´s not connected"
       );
     }
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
